@@ -26,7 +26,7 @@ System.register(['@angular/core'], function(exports_1, context_1) {
                     this.delete.emit(this.mediaItem);
                 };
                 __decorate([
-                    core_1.Input('mediaItem'), 
+                    core_1.Input(), 
                     __metadata('design:type', Object)
                 ], MediaItemComponent.prototype, "mediaItem", void 0);
                 __decorate([
