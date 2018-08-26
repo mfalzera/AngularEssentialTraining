@@ -67,7 +67,7 @@ System.register(['@angular/core', '@angular/forms', './media-item.service', './p
                     }
                 };
                 MediaItemFormComponent.prototype.onSubmit = function (mediaItem) {
-                    this.mediaItemService.add(mediaItem);
+                    this.mediaItemService.add(mediaItem).subscribe();
                 };
                 MediaItemFormComponent = __decorate([
                     core_1.Component({

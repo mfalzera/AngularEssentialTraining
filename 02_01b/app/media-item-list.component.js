@@ -24,12 +24,25 @@ System.register(['@angular/core', './media-item.service'], function(exports_1, c
             MediaItemListComponent = (function () {
                 function MediaItemListComponent(mediaItemService) {
                     this.mediaItemService = mediaItemService;
+                    this.medium = '';
+                    this.mediaItems = [];
                 }
                 MediaItemListComponent.prototype.ngOnInit = function () {
-                    this.mediaItems = this.mediaItemService.get();
+                    this.getMediaItems(this.medium);
                 };
                 MediaItemListComponent.prototype.onMediaItemDelete = function (mediaItem) {
-                    this.mediaItemService.delete(mediaItem);
+                    var _this = this;
+                    this.mediaItemService.delete(mediaItem).subscribe(function () {
+                        _this.getMediaItems(_this.medium);
+                    });
+                };
+                MediaItemListComponent.prototype.getMediaItems = function (medium) {
+                    var _this = this;
+                    this.medium = medium;
+                    this.mediaItemService.get()
+                        .subscribe(function (mediaItems) {
+                        _this.mediaItems = mediaItems;
+                    });
                 };
                 MediaItemListComponent = __decorate([
                     core_1.Component({
