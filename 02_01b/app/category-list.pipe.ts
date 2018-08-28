@@ -1,4 +1,4 @@
-import { Pipe } from '@angular/core'
+import { Pipe } from '@angular/core';
 
 @Pipe({
     name: 'categoryList'
@@ -6,7 +6,6 @@ import { Pipe } from '@angular/core'
 export class CategoryListPipe {
     transform(mediaItems) {
         var categories = [];
-
         mediaItems.forEach(mediaItem => {
             if (categories.indexOf(mediaItem.category) <= -1) {
                 categories.push(mediaItem.category);

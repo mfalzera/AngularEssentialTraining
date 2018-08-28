@@ -26,17 +26,21 @@ System.register(['@angular/core', '@angular/http', 'rxjs/add/operator/map'], fun
                 function MediaItemService(http) {
                     this.http = http;
                 }
-                MediaItemService.prototype.get = function () {
-                    return this.http.get('mediaitems')
+                MediaItemService.prototype.get = function (medium) {
+                    var searchParams = new http_1.URLSearchParams();
+                    searchParams.append('medium', medium);
+                    return this.http.get('mediaitems', { search: searchParams })
                         .map(function (response) {
                         return response.json().mediaItems;
                     });
                 };
                 MediaItemService.prototype.add = function (mediaItem) {
-                    return this.http.post('mediaitems', mediaItem);
+                    return this.http.post('mediaitems', mediaItem)
+                        .map(function (response) { });
                 };
                 MediaItemService.prototype.delete = function (mediaItem) {
-                    return this.http.delete("mediaitems/" + mediaItem.id);
+                    return this.http.delete("mediaitems/" + mediaItem.id)
+                        .map(function (response) { });
                 };
                 MediaItemService = __decorate([
                     core_1.Injectable(), 

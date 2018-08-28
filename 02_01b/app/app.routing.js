@@ -20,7 +20,6 @@ System.register(['@angular/router', './media-item-form.component', './media-item
                 { path: ':medium', component: media_item_list_component_1.MediaItemListComponent },
                 { path: '', pathMatch: 'full', redirectTo: 'all' }
             ];
-            // set up the router
             exports_1("routing", routing = router_1.RouterModule.forRoot(appRoutes));
         }
     }

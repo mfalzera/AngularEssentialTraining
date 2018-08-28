@@ -35,17 +35,4 @@ System.register(['@angular/core'], function(exports_1, context_1) {
         }
     }
 });
-//     onMediaItemDelete(mediaItem) {
-//         console.log("DEL");
-//     }
-//     firstMediaItem = {
-//         id: 1,
-//         name: "Firebug",
-//         medium: "Series",
-//         category: "Science Fiction",
-//         year: 2010,
-//         watchedOn: 1294166565384,
-//         isFavorite: false
-//     };
-// } 
 //# sourceMappingURL=app.component.js.map

@@ -4,4 +4,4 @@ export const lookupListToken = new OpaqueToken('lookupListToken');
 
 export const lookupLists = {
     mediums: ['Movies', 'Series']
-}
+};

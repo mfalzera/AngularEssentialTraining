@@ -33,7 +33,8 @@ System.register(['@angular/core', '@angular/router', './media-item.service'], fu
                 }
                 MediaItemListComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this.activatedRoute.params.subscribe(function (params) {
+                    this.paramsSubscription = this.activatedRoute.params
+                        .subscribe(function (params) {
                         var medium = params['medium'];
                         if (medium.toLowerCase() === 'all') {
                             medium = '';
@@ -41,16 +42,20 @@ System.register(['@angular/core', '@angular/router', './media-item.service'], fu
                         _this.getMediaItems(medium);
                     });
                 };
+                MediaItemListComponent.prototype.ngOnDestroy = function () {
+                    this.paramsSubscription.unsubscribe();
+                };
                 MediaItemListComponent.prototype.onMediaItemDelete = function (mediaItem) {
                     var _this = this;
-                    this.mediaItemService.delete(mediaItem).subscribe(function () {
+                    this.mediaItemService.delete(mediaItem)
+                        .subscribe(function () {
                         _this.getMediaItems(_this.medium);
                     });
                 };
                 MediaItemListComponent.prototype.getMediaItems = function (medium) {
                     var _this = this;
                     this.medium = medium;
-                    this.mediaItemService.get()
+                    this.mediaItemService.get(medium)
                         .subscribe(function (mediaItems) {
                         _this.mediaItems = mediaItems;
                     });
