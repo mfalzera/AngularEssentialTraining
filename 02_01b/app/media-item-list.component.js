@@ -1,4 +1,4 @@
-System.register(['@angular/core', './media-item.service'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/router', './media-item.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,25 +10,36 @@ System.register(['@angular/core', './media-item.service'], function(exports_1, c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, media_item_service_1;
+    var core_1, router_1, media_item_service_1;
     var MediaItemListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
             function (media_item_service_1_1) {
                 media_item_service_1 = media_item_service_1_1;
             }],
         execute: function() {
             MediaItemListComponent = (function () {
-                function MediaItemListComponent(mediaItemService) {
+                function MediaItemListComponent(mediaItemService, activatedRoute) {
                     this.mediaItemService = mediaItemService;
+                    this.activatedRoute = activatedRoute;
                     this.medium = '';
                     this.mediaItems = [];
                 }
                 MediaItemListComponent.prototype.ngOnInit = function () {
-                    this.getMediaItems(this.medium);
+                    var _this = this;
+                    this.activatedRoute.params.subscribe(function (params) {
+                        var medium = params['medium'];
+                        if (medium.toLowerCase() === 'all') {
+                            medium = '';
+                        }
+                        _this.getMediaItems(medium);
+                    });
                 };
                 MediaItemListComponent.prototype.onMediaItemDelete = function (mediaItem) {
                     var _this = this;
@@ -50,7 +61,7 @@ System.register(['@angular/core', './media-item.service'], function(exports_1, c
                         templateUrl: 'app/media-item-list.component.html',
                         styleUrls: ['app/media-item-list.component.css']
                     }), 
-                    __metadata('design:paramtypes', [media_item_service_1.MediaItemService])
+                    __metadata('design:paramtypes', [media_item_service_1.MediaItemService, router_1.ActivatedRoute])
                 ], MediaItemListComponent);
                 return MediaItemListComponent;
             }());
